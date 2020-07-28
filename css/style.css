@@ -5,6 +5,18 @@ body{
 h1,h2,h3,h4,h5,h6{
     font-family: 'Oswald', sans-serif;
 }
-section{
-    padding: 120px 0;
+.box-shadow{
+    box-shadow: 5px 5px 10px gray;;
+}
+#transectionArea{
+    display: none;
+}
+.deposite{
+    background: #5F4FC8;
+}
+.withdraw{
+    background: #F19671;
+}
+.balance{
+    background: #F09B02;
 }

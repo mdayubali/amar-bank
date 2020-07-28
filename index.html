@@ -10,21 +10,142 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <section>
-        <div class="container">
+<div class="container"> 
+    <section class="pt-5">
             <div class="row">
                 <div class="offset-md-2 col-md-8">
-                    <div class="card">
+                    <div class="card box-shadow" id="loginArea">
                         <div class="card-header bg-primary text-white font-weight-normal">
                             <h4 class="text-center text-uppercase">Welcome to Amar bank</h4>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body py-4">
+                            <h5 class="text-center">Login</h5>
+                            <form action="" method="POST">
 
+                                <div class="form-group">
+                                    <label>Email address</label>
+                                    <input type="email" class="form-control" name="email">
+                                </div>
+                                <div class="form-group">
+                                    <label>Password</label>
+                                    <input type="password" name="password" class="form-control" id="Password1">
+                                </div>
+                                <div class="form-group form-check">
+                                    <input type="checkbox" class="form-check-input" id="Check1" name="check">
+                                    <label class="form-check-label">Check me out</label>
+                                </div>
+                                <button type="button" id="login" name="submit" class="btn btn-primary px-4">Enter</button>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
     </section>
+    <section class="pt-5" id="transectionArea">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header bg-primary text-white font-weight-normal">
+                            <h4 class="text-center text-uppercase">Transection</h4>
+                        </div>
+                        <div class="card-body py-4">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="card text-white deposite mb-3">
+                                        <div class="card-body">
+                                                <h5 class="card-title">Deposit</h5>
+                                                <h2 class="card-text">
+                                                    $ <span id="currentDeposit">00</span>
+                                                </h2>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card text-white withdraw mb-3">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Withdraw</h5>
+                                            <h2 class="card-text">$ 
+                                                    <span id="withdraw">00</span>
+                                                </h2>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card text-white balance mb-3">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Balance</h5>
+                                            <h2 class="card-text">$ <span id="currentBalance">1200</span></h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-md-6">
+                    <div class="card box-shadow">
+                        <div class="card-body">
+                             <h5 class="card-title">Deposit</h5>
+                             <input type="text" class="form-control mb-3" id="dipositAmount" placeholder="$ amount you want to deposite">
+                             <button class="btn btn-success" id="addDeposit">Deposite</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card box-shadow">
+                        <div class="card-body">
+                             <h5 class="card-title">Withdraw</h5>
+                             <input type="text" class="form-control mb-3" id="withdrawAmount" placeholder="$ amount you want to withdraw">
+                             <button class="btn btn-danger" id="addWithdraw">Withdraw</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+</div>
+    <script>
+        //login button event Handler
+        const loginBtn = document.getElementById("login")
+        loginBtn.addEventListener("click",function(){
+            const loginArea = document.getElementById("loginArea");
+            loginArea.style.display = "none";
+            const transectionArea = document.getElementById("transectionArea");
+            transectionArea.style.display = "block";
+        })
+        // Deposite event handler
+        const depositBtn = document.getElementById("addDeposit");
+        depositBtn.addEventListener("click",function(){
+            const dipositNumber = getInputNumber("dipositAmount");
+            
+            updateSpanText("currentDeposit",dipositNumber);
+            updateSpanText("currentBalance",dipositNumber);
+
+            document.getElementById("dipositAmount").value = "";
+
+        })
+        // Withdraw event handler
+        const withdrawBtn = document.getElementById("addWithdraw");
+        withdrawBtn.addEventListener("click",function(){
+            const withdrawNumber = getInputNumber("withdrawAmount");
+            console.log(withdrawNumber);
+        })
+
+        function getInputNumber(id) {
+            const amount = document.getElementById(id).value;
+            const amountNumber = parseFloat(amount);
+            return amountNumber;
+        }
+
+        function updateSpanText(id,dipositNumber) {
+            
+            const current = document.getElementById(id).innerText;
+            const currentNumber=parseFloat(current);
+            const totalAmount = dipositNumber+currentNumber;
+            document.getElementById(id).innerText= totalAmount;
+        }
+    </script>
 </body>
 </html>
